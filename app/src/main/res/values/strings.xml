@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">App_movie</string>
+    <string-array name="user_credentials">
+        <item>user1:password1</item>
+        <item>user2:password2</item>
+        <item>user3:password3</item>
+        <item>user4:password4</item>
+        <item>user5:password5</item>
+    </string-array>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_movies"> Movies</string>
+    <string name="title_photos">Selected movie</string>
+</resources>
