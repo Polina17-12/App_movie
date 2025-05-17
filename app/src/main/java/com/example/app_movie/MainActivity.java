@@ -3,6 +3,8 @@ package com.example.app_movie;
 import android.app.Activity;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
+
 import android.content.Intent;
 import android.content.res.Resources;
 import android.view.View;
@@ -17,9 +19,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText usernameEditText = findViewById(R.id.usernameEditText);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
-        Button loginButton = findViewById(R.id.loginButton);
+        EditText usernameEditText = findViewById(R.id.et_username);
+        EditText passwordEditText = findViewById(R.id.et_password);
+        Button loginButton = findViewById(R.id.btn_login);
+
 
         // Получаем массив пользователей из ресурсов
         Resources res = getResources();
@@ -48,8 +51,11 @@ public class MainActivity extends Activity {
                     Toast.makeText(MainActivity.this, "Неверные учетные данные!", Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
+
     }
+
 }
 
 

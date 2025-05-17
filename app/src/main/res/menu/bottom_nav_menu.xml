@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/navigation_movies"
-        android:icon="@drawable/ic_movie"
+        android:icon="@drawable/ic_movies"
         android:title="@string/title_movies" />
 
     <item
-        android:id="@+id/navigation_photos"
-        android:icon="@drawable/ic_photo"
-        android:title="@string/title_photos" />
+        android:id="@+id/navigation_selected"
+        android:icon="@drawable/ic_selected_movie"
+        android:title="@string/title_selected_movies" />
+
+
 </menu>
