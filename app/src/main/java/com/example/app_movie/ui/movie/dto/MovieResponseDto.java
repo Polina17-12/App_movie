@@ -1,10 +1,10 @@
-package com.example.app_movie.ui.movie;
+package com.example.app_movie.ui.movie.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Movie {
+public class MovieResponseDto {
     @SerializedName("id")            public int id;
     @SerializedName("title")         public String title;
     @SerializedName("release_date")  public String releaseDate;  // "2024-03-12"

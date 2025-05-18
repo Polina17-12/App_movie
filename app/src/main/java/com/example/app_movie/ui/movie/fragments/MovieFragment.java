@@ -1,4 +1,4 @@
-package com.example.app_movie.ui.movie;
+package com.example.app_movie.ui.movie.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,6 +21,7 @@ public class MovieFragment extends Fragment {
 
     @Nullable
     @Override
+    //
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle b) {
         return inflater.inflate(R.layout.fragment_movies, container, false);
@@ -35,7 +36,22 @@ public class MovieFragment extends Fragment {
         adapter = new MovieAdapter();
         rv.setAdapter(adapter);
 
+        //чтобы срабатывало кликанье на фильм
+        adapter.setOnItemClickListener(movie -> {
+            // создаём фрагмент с аргументом
+            MovieDetailFragment detail = MovieDetailFragment.newInstance(movie);
+            // заменяем текущий фрагмент (container — id вашего FrameLayout)
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, detail)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
+        //
         vm = new ViewModelProvider(this).get(MovieViewModel.class);
+        vm.initContext(getActivity());
+        //когда наблюдаем новые даннные, выполни submit
         vm.items.observe(getViewLifecycleOwner(), adapter::submit);
 
         if (vm.items.getValue()==null) vm.refresh();

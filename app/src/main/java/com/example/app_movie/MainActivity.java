@@ -12,13 +12,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.app_movie.data.UserRepository;
+
 public class MainActivity extends Activity {
 
+    private UserRepository repository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        repository = new UserRepository(this);
         EditText usernameEditText = findViewById(R.id.et_username);
         EditText passwordEditText = findViewById(R.id.et_password);
         Button loginButton = findViewById(R.id.btn_login);
@@ -34,22 +38,18 @@ public class MainActivity extends Activity {
                 String username = usernameEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-                boolean isValid = false;
-                for (String credential : credentials) {
-                    String[] parts = credential.split(":");
-                    if (parts.length == 2 && parts[0].equals(username) && parts[1].equals(password)) {
-                        isValid = true;
-                        break;
-                    }
-                }
 
-                if (isValid) {
-                    Intent intent = new Intent(MainActivity.this, MovieNavigation.class);
-                    intent.putExtra("username", username);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(MainActivity.this, "Неверные учетные данные!", Toast.LENGTH_SHORT).show();
-                }
+
+                repository.login(username,password, (isValid)->
+                {
+                    if (Boolean.TRUE.equals(isValid)) {
+                        Intent intent = new Intent(MainActivity.this, MovieNavigation.class);
+                        intent.putExtra("username", username);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "Неверные учетные данные!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
         });

@@ -14,6 +14,6 @@
 
     <fragment
         android:id="@+id/navigation_movies"
-        android:name="com.example.app_movie.ui.movie.MovieFragment"
+        android:name="com.example.app_movie.ui.movie.fragments.MovieFragment"
         android:label="@string/title_movies" />
 </navigation>
