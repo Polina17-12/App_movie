@@ -29,11 +29,8 @@ public class MovieApiRepository {
 
     private static final String KEY = "46b36c05174f049d768ea6a97d23ce56";
 
-    //чтобы передавать список фильмов
     private final MutableLiveData<List<Movie>> movies = new MutableLiveData<>();
 
-
-    //бд с фильмами
     private final MovieDbRepository movieDbRepository;
 
     public LiveData<List<Movie>> getMovies() {
@@ -41,23 +38,18 @@ public class MovieApiRepository {
     }
 
 
-    //жанры
     private Map<Integer, String> genreMap;
-    //все, кроме актеров
     private List<MovieResponseDto> movieList;
-    //описание,
     private final Map<Integer, MovieDetailResponse> detailMap = new ConcurrentHashMap<>();
 
     private final AtomicInteger pendingDetails = new AtomicInteger(0);
 
 
-    //тут context нужен, чтобы доступ к movieDbRepository
     public MovieApiRepository(Context context) {
         movieDbRepository = new MovieDbRepository(context);
     }
 
 
-    //
     public void refresh() {
         movieDbRepository.selectAll((l) ->
         {
@@ -91,7 +83,7 @@ public class MovieApiRepository {
                                 map.put(g.id, g.name);
                             }
                             genreMap = map;
-                            // функция собирает все на свете в movie
+
                             tryEmit();
                         }
                     }
@@ -112,13 +104,11 @@ public class MovieApiRepository {
                                            Response<MovieResponse> r) {
                         if (r.isSuccessful() && r.body() != null) {
                             movieList = r.body().results;
-                            // установим, сколько деталей нам ждать (счетчик)
                             pendingDetails.set(movieList.size());
-                            // запустим загрузку деталей по каждому
                             for (MovieResponseDto dto : movieList) {
                                 loadMovieDetail(dto.id, dto);
                             }
-                            tryEmit(); // на случай, если size=0
+                            tryEmit();
                         }
                     }
 
@@ -155,23 +145,21 @@ public class MovieApiRepository {
     }
 
     private void tryEmit() {
-        // все три условия:
+
         if (genreMap != null
                 && movieList != null
-                //счетчик равен 0 (в функции loadMovies)
                 && pendingDetails.get() == 0) {
 
             List<Movie> out = new ArrayList<>(movieList.size());
             for (MovieResponseDto dto : movieList) {
-                //вся инфа о фильме
+
                 MovieDetailResponse detail = detailMap.get(dto.id);
 
-//были странные циклы for
+
                 String genresStr = String.join(", ", dto.genreIds.stream().filter(id -> genreMap.containsKey(id)).map(genreMap::get).collect(Collectors.toList()));
                 String actors = detail != null ? String.join(", ", detail.credits.cast.stream().map(a -> a.name).collect(Collectors.toList())): "";
 
 
-                // описание может лежать в detail.overview
                 String overview = detail != null ? detail.overview : "";
 
                 out.add(new Movie(
@@ -179,7 +167,7 @@ public class MovieApiRepository {
                         dto.title,
                         overview,
                         dto.releaseDate,
-                        dto.posterPath,  // или как у вас
+                        dto.posterPath,
                         genresStr,
                         actors
                 ));

@@ -21,19 +21,13 @@ public class MovieNavigation extends AppCompatActivity {
         binding = ActivityBottomNavigationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
-//        navView— это прям объект «панель‑с‑иконками‑внизу»
         BottomNavigationView navView = binding.navView;
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.nav_host_fragment_activity_bottom_navigation);
-        // Настраиваем NavController
-        // navController умеет по команде: «Перейди к экрану X» — заменить текущий фрагмент нужным.
-        NavController navController = navHostFragment.getNavController();
 
-//        Когда пользователь нажмёт «Фильмы», меню пошлёт сигнал в NavController.
-//                NavController вставит нужную страницу‑фрагмент в рамку.
+        NavController navController = navHostFragment.getNavController();
 
         NavigationUI.setupWithNavController(navView, navController);
     }

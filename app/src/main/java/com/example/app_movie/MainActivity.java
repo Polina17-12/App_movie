@@ -28,9 +28,9 @@ public class MainActivity extends Activity {
         Button loginButton = findViewById(R.id.btn_login);
 
 
-        // Получаем массив пользователей из ресурсов
-        Resources res = getResources();
-        String[] credentials = res.getStringArray(R.array.user_credentials);
+        //  массив пользователей из ресурсов
+//        Resources res = getResources();
+//        String[] credentials = res.getStringArray(R.array.user_credentials);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,13 +38,11 @@ public class MainActivity extends Activity {
                 String username = usernameEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
-
-
                 repository.login(username,password, (isValid)->
                 {
                     if (Boolean.TRUE.equals(isValid)) {
                         Intent intent = new Intent(MainActivity.this, MovieNavigation.class);
-                        intent.putExtra("username", username);
+//                        intent.putExtra("username", username);
                         startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Неверные учетные данные!", Toast.LENGTH_SHORT).show();
@@ -55,7 +53,6 @@ public class MainActivity extends Activity {
         });
 
     }
-
 }
 
 

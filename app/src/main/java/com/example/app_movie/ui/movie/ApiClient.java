@@ -22,7 +22,7 @@ public class ApiClient {
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create()) //когда придёт JSON, пользуйся Gson, чтобы превратить его в Java-объект
+                    .addConverterFactory(GsonConverterFactory.create()) //когда придёт JSON
                     .client(client)
                     .build();
 

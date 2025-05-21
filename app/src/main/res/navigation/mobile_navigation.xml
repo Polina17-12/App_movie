@@ -7,10 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_selected"
-        android:name="com.example.app_movie.ui.selectedMovie.SelectedMFragment"
-        android:label="@string/title_selected_movies"
-         />
-
+        android:name="com.example.app_movie.ui.movie.fragments.MovieDetailFragment"
+        android:label="@string/title_selected_movies">
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_movies"

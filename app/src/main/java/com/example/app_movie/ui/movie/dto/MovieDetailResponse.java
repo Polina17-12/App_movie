@@ -6,8 +6,8 @@ public class MovieDetailResponse {
     @SerializedName("id")            public int id;
     @SerializedName("title")         public String title;
     @SerializedName("release_date")  public String releaseDate;
-    @SerializedName("overview")      public String overview;       // описание
+    @SerializedName("overview")      public String overview;
     @SerializedName("poster_path")   public String posterPath;
 
-    @SerializedName("credits")       public Credits credits;       // вложенный объект
+    @SerializedName("credits")       public Credits credits;
 }

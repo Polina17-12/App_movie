@@ -17,17 +17,17 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {User.class, Movie.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
-    private static volatile AppDatabase INSTANCE; //чтобы не создавать новую бд (синглтон)
+    private static volatile AppDatabase INSTANCE;
 
     public abstract UserDao userDao();
-    public abstract MovieDao movieDao(); //в apirepository когда загружаем, смотрим в movie таблице есть ли что-то
+    public abstract MovieDao movieDao();
 
-    private static final int NUMBER_OF_THREADS = 4; //можем в бд ходить в 4 потока, можно 4 операции одновременно делать
+    private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS); //управляет количеством потоков (просто потоками)
+            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     public static AppDatabase getInstance(final Context context) {
         if (INSTANCE == null) {
-            synchronized (AppDatabase.class) { //все потоки синхронизируются по объекту (пока у потока нет объекта, он ждет)
+            synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "app_database")
@@ -35,7 +35,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                 @Override
                                 public void onCreate(SupportSQLiteDatabase db) {
                                     super.onCreate(db);
-                                    // При первом создании базы наполняем начальными данными
+
                                     databaseWriteExecutor.execute(() -> {
                                         UserDao dao = INSTANCE.userDao();
                                         dao.insert(new User("u", "p"));

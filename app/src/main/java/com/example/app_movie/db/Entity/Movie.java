@@ -14,13 +14,13 @@ public class Movie implements Serializable {
     private String description;
     private String year;
     private String posterUrl;
-    // новые поля
-    private String genres;  // например: "Action, Drama, Sci-Fi"
-    private String actors;  // например: "Leonardo DiCaprio, Joseph Gordon-Levitt"
+
+    private String genres;
+    private String actors;
 
     public Movie(long id, String title, String description, String year, String posterUrl, String genres,
                  String actors) {
-//        this(title, description, year, posterUrl, genres, actors);
+
         this.id = id;
         this.title = title;
         this.description = description;
@@ -30,10 +30,6 @@ public class Movie implements Serializable {
         this.actors = actors;
     }
 
-//    public Movie(String title, String description, String year, String posterUrl, String genres,
-//                 String actors) {
-//
-//    }
 
     // геттеры/сеттеры
     public long getId() {

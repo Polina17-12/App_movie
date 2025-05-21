@@ -18,7 +18,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 @GlideModule
-public final class MyAppGlideModule extends AppGlideModule {
+public final class MovieGlideModule extends AppGlideModule {
 
     @Override
     public void registerComponents(
@@ -39,6 +39,6 @@ public final class MyAppGlideModule extends AppGlideModule {
                 new OkHttpUrlLoader.Factory(okHttpClient));
     }
 
-    /** Ускоряет старт приложения: Glide не парсит AndroidManifest */
+
     @Override public boolean isManifestParsingEnabled() { return false; }
 }

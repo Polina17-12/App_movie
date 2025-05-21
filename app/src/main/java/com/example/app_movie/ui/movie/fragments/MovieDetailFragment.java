@@ -10,32 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.app_movie.R;
 import com.example.app_movie.db.entity.Movie;
 import com.example.app_movie.ui.movie.GlideApp;
+import com.example.app_movie.ui.movie.SharedViewModel;
 
 public class MovieDetailFragment extends Fragment {
-    private static final String ARG_MOVIE = "arg_movie";
     private static final String IMG_BASE = "https://image.tmdb.org/t/p/w500";
-
-    private Movie movie;
-
-    //новый объект в новом фрагменте
-    public static MovieDetailFragment newInstance(Movie movie) {
-        MovieDetailFragment f = new MovieDetailFragment();
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_MOVIE, movie);
-        f.setArguments(args);
-        return f;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            movie = (Movie) getArguments().getSerializable(ARG_MOVIE);
-        }
     }
 
     @Nullable
@@ -57,6 +44,13 @@ public class MovieDetailFragment extends Fragment {
         TextView tvGenres = v.findViewById(R.id.tvGenres);
         TextView tvActors = v.findViewById(R.id.tvActors);
 
+
+        SharedViewModel sharedVM =
+                new ViewModelProvider(requireActivity())
+                        .get(SharedViewModel.class);
+
+        sharedVM.getSelectedMovie().observe(getViewLifecycleOwner(), movie -> {
+
         if (movie != null) {
             tvTitle.setText(movie.getTitle());
             tvYear.setText(movie.getYear());
@@ -69,6 +63,8 @@ public class MovieDetailFragment extends Fragment {
                     .placeholder(R.drawable.ic_notifications_black_24dp)
                     .error(R.drawable.ic_notifications_black_24dp)
                     .into(ivPoster);
-        }
+        }else {
+            }
+        });
     }
 }

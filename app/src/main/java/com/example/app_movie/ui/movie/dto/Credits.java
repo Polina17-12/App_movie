@@ -6,5 +6,5 @@ import java.util.List;
 
 public class Credits {
     @SerializedName("cast")
-    public List<Cast> cast;       // список актёров
+    public List<Cast> cast;
 }

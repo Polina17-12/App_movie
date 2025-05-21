@@ -21,20 +21,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.VH> {
     private static final String IMG = "https://image.tmdb.org/t/p/w500";
     private final List<Movie> data = new ArrayList<>();
 
-    //чтобы можно было лямбду засунуть
+
     public interface OnItemClickListener {
         void onItemClick(Movie movie);
     }
 
     private OnItemClickListener listener;
 
-    //фуекция устанавливае обработчик события нажатия на кнопку фильма
+
     public void setOnItemClickListener(OnItemClickListener l) {
         this.listener = l;
     }
 
 
-    //заново устанавливает данные и перерисовывает интерфейс
     public void submit(List<Movie> list) {
         data.clear();
         data.addAll(list);
@@ -56,14 +55,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.VH> {
 
     @NonNull
     @Override
-    //если передали данные, то на каждые данные новую xml
+
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_movie, parent, false);
         return new VH(v);
     }
 
-    //данные в листе должны сопоставиться с отображением
+
     @Override public void onBindViewHolder(@NonNull VH h,int pos){
         Movie it = data.get(pos);
 
@@ -80,7 +79,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.VH> {
                 .load(IMG + it.getPosterUrl())
                 .placeholder(R.drawable.ic_notifications_black_24dp)
                 .error(R.drawable.ic_notifications_black_24dp)
-                .into(h.poster);                         // асинхронно загружает и кеширует картинку
+                .into(h.poster);
     }
 
     @Override

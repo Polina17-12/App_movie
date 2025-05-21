@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">App_movie</string>
-    <string-array name="user_credentials">
-        <item>u:p</item>
-        <item>user1:p1</item>
-        <item>user2:p2</item>
-        <item>user3:p3</item>
-        <item>user4:p4</item>
-        <item>user5:p5</item>
-    </string-array>
+<!--    <string-array name="user_credentials">-->
+<!--        <item>u:p</item>-->
+<!--        <item>user1:p1</item>-->
+<!--        <item>user2:p2</item>-->
+<!--        <item>user3:p3</item>-->
+<!--        <item>user4:p4</item>-->
+<!--        <item>user5:p5</item>-->
+<!--    </string-array>-->
 
-    <string name="title_selected_movies">Избранное</string>
+    <string name="title_selected_movies">Выбранный фильм</string>
     <string name="title_movies"> Фильмы</string>
 </resources>
