@@ -11,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface TmdbApi {
 
-    // https://api.themoviedb.org/3/movie/popular?api_key=YOUR_KEY&language=ru
+    // https://api.themoviedb.org/3/movie/popular?api_key=KEY&language=ru
     @GET("movie/popular")
     Call<MovieResponse> getPopular(
             @Query("api_key") String apiKey,

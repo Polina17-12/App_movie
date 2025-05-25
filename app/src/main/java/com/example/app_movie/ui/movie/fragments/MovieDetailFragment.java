@@ -34,7 +34,6 @@ public class MovieDetailFragment extends Fragment {
     }
 
 
-    //собирает из объекта данные, и распихивает поля из объекта в ui
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle b) {
         ImageView ivPoster = v.findViewById(R.id.ivPoster);

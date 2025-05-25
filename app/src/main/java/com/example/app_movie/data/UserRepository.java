@@ -24,7 +24,6 @@ public class UserRepository {
 
     public void login(String username, String password, AuthCallback cb) {
         executor.execute(() -> {
-
             var res = userDao.getUser(username, password) != null;
             mainHandler.post(() -> cb.onResult(res));
         });

@@ -2,15 +2,33 @@
 <resources>
 
 
+    <style name="Theme.App_movie.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <!--    Фоновый цвет сплэша (Android 12+)     -->
+        <item name="windowSplashScreenBackground">@color/colorSecondary</item>
+
+        <!--    Фон для старых API, чтобы тоже был цвет   -->
+        <item name="android:windowBackground">@color/colorSecondary</item>
+
+        <!--    Логотип по центру -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/movie_login</item>
+
+        <!--    Длина авто-анимации (можно убрать, если не нужна)  -->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+
+        <!--    После сплэша переходим на обычную тему приложения -->
+        <item name="postSplashScreenTheme">@style/Theme.App_movie</item>
+    </style>
+
+
     <style name="Theme.App_movie" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowFullscreen">false</item>
+        <item name="windowSplashScreenBackground">@color/colorPrimary</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
 
         <item name="colorSecondary">@color/colorSecondary</item>
         <item name="colorOnSecondary">@color/colorOnSecondary</item>
-
 
         <item name="textInputStyle">@style/Widget.App_movie.TextInputLayout</item>
     </style>
@@ -19,4 +37,6 @@
         <item name="boxStrokeColor">@color/colorPrimary</item>
         <item name="hintTextColor">@color/lilac700</item>
     </style>
+
+
 </resources>

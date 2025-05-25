@@ -49,14 +49,13 @@ public class MovieApiRepository {
         movieDbRepository = new MovieDbRepository(context);
     }
 
-
     public void refresh() {
         movieDbRepository.selectAll((l) ->
         {
             if (l == null || l.isEmpty()) {
                 realRefresh();
             }
-            movies.postValue(l);
+            else movies.postValue(l);
         });
     }
 
@@ -158,7 +157,6 @@ public class MovieApiRepository {
 
                 String genresStr = String.join(", ", dto.genreIds.stream().filter(id -> genreMap.containsKey(id)).map(genreMap::get).collect(Collectors.toList()));
                 String actors = detail != null ? String.join(", ", detail.credits.cast.stream().map(a -> a.name).collect(Collectors.toList())): "";
-
 
                 String overview = detail != null ? detail.overview : "";
 

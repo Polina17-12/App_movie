@@ -16,7 +16,7 @@
             android:layout_height="150dp"
             android:scaleType="centerCrop"/>
 
-        <!-- Тексты вертикально -->
+
         <LinearLayout
             android:layout_marginStart="8dp"
             android:orientation="vertical"

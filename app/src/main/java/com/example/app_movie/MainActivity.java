@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.example.app_movie.data.UserRepository;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private UserRepository repository;
     @Override
@@ -26,7 +26,6 @@ public class MainActivity extends Activity {
         EditText usernameEditText = findViewById(R.id.et_username);
         EditText passwordEditText = findViewById(R.id.et_password);
         Button loginButton = findViewById(R.id.btn_login);
-
 
         //  массив пользователей из ресурсов
 //        Resources res = getResources();
